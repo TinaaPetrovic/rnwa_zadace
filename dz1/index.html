@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .menu {
+        background-color: lightblue;
+        padding: 8px;
+        margin-top: 7px;
+        width: 100%;
+        text-align: center;
+      }
+      .menu a {
+        color: black;
+        font-size: x-large;
+        margin: 10px 40px 10px;
+      }
+      .header {
+        background-color: lightblue;
+        width: 70%;
+        padding: 15px;
+        text-align: center;
+        display: inline-block;
+      }
+      .auth {
+        background-color: lightblue;
+        width: 25%;
+        padding: 15px;
+        text-align: center;
+        float: right;
+      }
+      .auth a {
+        color: black;
+        margin: 10px 0px 10px;
+      }
+      .main {
+        float: left;
+        width: 80%;
+        margin-bottom: 50px;
+      }
+
+      .main article {
+        background-color: lightblue;
+        margin-top: 25px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 20px;
+        color: black;
+        padding-bottom: 15px;
+      }
+
+      .main article img {
+        border-radius: 50%;
+        width: 50%;
+        margin-left: 10px;
+        margin-top: 10px;
+      }
+
+      .main h4 {
+        margin-left: 20px;
+      }
+
+      .main div {
+        display: table-cell;
+      }
+
+      div.articleLeft {
+        width: 25%;
+      }
+
+      div.articleRight {
+        width: 75%;
+        vertical-align: top;
+        padding-top: 15px;
+      }
+
+      div.articleRight img {
+        border-radius: 0%;
+        width: 70%;
+      }
+
+      .aside {
+        background-color: lightblue;
+        float: right;
+        width: 20%;
+        height: 100%;
+        max-height: 100%;
+        padding: 15px;
+        margin-top: 7px;
+        text-align: center;
+        color: black;
+      }
+
+      .aside a {
+        padding-top: 20px;
+        text-decoration: none;
+        color: black;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .aside a:hover {
+        color: #f1f1f1;
+      }
+
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 5%;
+        background-color: lightblue;
+        color: white;
+        text-align: center;
+      }
+
+      #profilePic {
+        border-radius: 50%;
+        width: 85%;
+      }
+
+      @media only screen and (max-width: 620px) {
+        /* For mobile phones: */
+
+        body {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .header {
+          width: 80%;
+          order: 1;
+        }
+        .auth {
+          width: 20%;
+          order: 1;
+        }
+        .main {
+          width: 100%;
+          order: 2;
+        }
+        .menu {
+          width: 100%;
+          order: 3;
+        }
+        .aside {
+          width: 100%;
+          order: 4;
+        }
+        #profilePic {
+          width: 30%;
+        }
+
+        .footer {
+          width: 100%;
+          order: 5;
+        }
+      }
+    </style>
+  </head>
+  <body style="font-family: Verdana; color: #aaaaaa">
+    <div class="header">Logo</div>
+    <div class="auth">
+      <a class="login" href="#"> Login </a>
+      <a class="register" href="#"> Register </a>
+    </div>
+
+    <div class="menu">
+      <a href="#" style="color: white">Home</a>
+      <a href="#">Profile</a>
+    </div>
+
+    <div class="main">
+      <article>
+        <div class="articleLeft">
+          <h4>Lorem ipsum</h4>
+        </div>
+
+        <div class="articleRight">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            tristique faucibus sapien sit amet vestibulum. Sed facilisis, lorem
+            ut blandit dignissim, magna neque fermentum purus, sed sagittis sem
+            nulla eget velit. Donec porta enim at congue egestas. Aliquam
+            dignissim consectetur lacinia. Pellentesque gravida iaculis finibus.
+            Mauris tincidunt posuere ullamcorper.
+          </p>
+        </div>
+      </article>
+      <article>
+        <div class="articleLeft">
+          <h4>Lorem ipsum</h4>
+        </div>
+
+        <div class="articleRight">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            tristique faucibus sapien sit amet vestibulum. Sed facilisis, lorem
+            ut blandit dignissim, magna neque fermentum purus, sed sagittis sem
+            nulla eget velit. Donec porta enim at congue egestas. Aliquam
+            dignissim consectetur lacinia. Pellentesque gravida iaculis finibus.
+            Mauris tincidunt posuere ullamcorper.
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <div class="aside">
+      <p
+        style="
+          font-family: Georgia, 'Times New Roman', Times, serif;
+          font-size: 25px;
+        "
+      >
+        Lorem ipsum
+      </p>
+      <a href="#">Settings</a>
+      <a href="#">Logout</a>
+    </div>
+
+    <div class="footer">Sveučilište u Mostaru</div>
+  </body>
+</html>

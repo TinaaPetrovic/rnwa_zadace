@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      #resultDiv {
+        overflow-x: auto;
+        border-radius: 20px;
+      }
+      th {
+        text-align: left;
+      }
+      .menu {
+        background-color: lightblue;
+        padding: 8px;
+        margin-top: 7px;
+        width: 100%;
+        text-align: center;
+      }
+      .menu a {
+        color: black;
+        font-size: x-large;
+        margin: 10px 40px 10px;
+      }
+      .header {
+        background-color: lightblue;
+        width: 70%;
+        padding: 15px;
+        text-align: center;
+        display: inline-block;
+      }
+      .auth {
+        background-color: lightblue;
+        width: 25%;
+        padding: 15px;
+        text-align: center;
+        float: right;
+      }
+      .auth a {
+        color: black;
+        margin: 10px 0px 10px;
+      }
+      .main {
+        float: left;
+        width: 80%;
+        margin-bottom: 50px;
+      }
+
+      .main article {
+        background-color: lightblue;
+        margin-top: 25px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 20px;
+        color: black;
+        padding-bottom: 15px;
+      }
+
+      .main article img {
+        border-radius: 50%;
+        width: 50%;
+        margin-left: 10px;
+        margin-top: 10px;
+      }
+
+      .main h4 {
+        margin-left: 20px;
+      }
+
+      .main div {
+        display: table-cell;
+      }
+
+      div.articleLeft {
+        width: 25%;
+      }
+
+      div.articleRight {
+        width: 75%;
+        vertical-align: top;
+        padding-top: 15px;
+      }
+
+      div.articleRight img {
+        border-radius: 0%;
+        width: 70%;
+      }
+
+      .aside {
+        background-color: lightblue;
+        float: right;
+        width: 20%;
+        height: 100%;
+        max-height: 100%;
+        padding: 15px;
+        margin-top: 7px;
+        text-align: center;
+        color: black;
+      }
+
+      .aside a {
+        padding-top: 20px;
+        text-decoration: none;
+        color: black;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .aside a:hover {
+        color: #f1f1f1;
+      }
+
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 5%;
+        background-color: lightblue;
+        color: white;
+        text-align: center;
+      }
+
+      #profilePic {
+        border-radius: 50%;
+        width: 85%;
+      }
+
+      @media only screen and (max-width: 620px) {
+        /* For mobile phones: */
+
+        body {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .header {
+          width: 80%;
+          order: 1;
+        }
+        .auth {
+          width: 20%;
+          order: 1;
+        }
+        .main {
+          width: 100%;
+          order: 2;
+        }
+        .menu {
+          width: 100%;
+          order: 3;
+        }
+        .aside {
+          width: 100%;
+          order: 4;
+        }
+        #profilePic {
+          width: 30%;
+        }
+        #resultDiv {
+          overflow-x: auto;
+          width: 100%;
+        }
+        .footer {
+          width: 100%;
+          order: 5;
+        }
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      async function getTitles() {
+        let str = $("#searchInput").val();
+
+        let { data } = await axios.get("titles.php", { params: { s: str } });
+        $("#resultDiv").html(data);
+      }
+      $(document).ready(function () {
+        getTitles();
+        let searchInput = $("#searchInput");
+
+        searchInput.keyup(async function () {
+          let str = $("#searchInput").val();
+          if (str.length === 0) {
+            $("#txtHint").val("");
+          } else {
+            let { data } = await axios.get("titles_search.php", {
+              params: { s: str },
+            });
+            $("#txtHint").html(data);
+          }
+        });
+      });
+    </script>
+  </head>
+  <body style="font-family: Verdana; color: #aaaaaa" onload="getTitles()">
+    <div class="header">Logo</div>
+    <div class="auth">
+      <a class="login" href="#"> Login </a>
+      <a class="register" href="#"> Register </a>
+    </div>
+
+    <div class="menu">
+      <a href="#" style="color: white">Home</a>
+      <a href="#">Profile</a>
+    </div>
+    <div class="main">
+      <article>
+        <div class="articleRight">
+          <p><b>Tipkajte sadržaj objave da vidite prijedloge:</b></p>
+          <div>
+            Sadržaj:
+            <input
+              id="searchInput"
+              type="text"
+              onkeyup="showHint(this.value)"
+            />
+            <button onclick="getTitles()">Get posts</button>
+          </div>
+          <p>
+            Prijedlozi:<br />
+            <span id="txtHint" style="color: lightcoral"></span>
+          </p>
+        </div>
+      </article>
+      <article>
+        <div id="resultDiv"></div>
+      </article>
+      <article>
+        <b><span style="font-size: medium">BAM / EUR CONVERTER</span></b>
+        <form name="form" method="post" action="service.php">
+          <p>
+            <label for="value">Value</label><br /><input
+              name="value"
+              type="text"
+              id="value"
+              size="15"
+            />
+          </p>
+          <label for="currency">Currency</label><br />
+          <select name="currency" id="currency">
+            <option value="toEur">Convert to EUR</option>
+            <option value="toBam">Convert to BAM</option>
+          </select>
+          <p><input type="submit" name="Submit" value="Convert" /></p>
+        </form>
+      </article>
+    </div>
+
+    <div class="aside">
+      <p
+        style="
+          font-family: Georgia, 'Times New Roman', Times, serif;
+          font-size: 25px;
+        "
+      ></p>
+      <a href="#">Settings</a>
+      <a href="#">Logout</a>
+    </div>
+
+    <div class="footer">Sveučilište u Mostaru</div>
+  </body>
+</html>
